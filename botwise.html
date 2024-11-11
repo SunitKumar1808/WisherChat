@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wisher Chat Bot</title>
+  <style>
+    /* General styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://source.unsplash.com/1600x900/?celebration,night'); /* Background image for a dark look */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+
+    /* Container styling */
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.85); /* Light, transparent container */
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px); /* Soft blur effect for background */
+    }
+
+    /* Neon black title styling */
+    h1 {
+      font-size: 2.5em;
+      color: #000; /* Black neon color */
+      font-style: italic;
+      text-shadow: 0 0 5px #000000, 0 0 10px #000000, 0 0 15px #000000;
+    }
+
+    /* Form styling */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="email"], input[type="password"], input[type="text"], textarea {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    /* Send button styling */
+    .send-button {
+      background-color: #000; /* Black button for matching neon color */
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      align-self: flex-start; /* Align to left */
+      margin-top: 10px;
+    }
+
+    .send-button:hover {
+      background-color: #333;
+    }
+
+    /* Hide sections initially */
+    #wish-form {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="login-section">
+  <h1>Wisher</h1>
+  <form id="login-form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter a strong password" required>
+    <button type="submit" class="send-button">Login</button>
+  </form>
+</div>
+
+<div class="container" id="wish-form">
+  <h1>Wisher</h1>
+  <form id="wish-message-form">
+    <label for="recipient-name">Recipient Name:</label>
+    <input type="text" id="recipient-name" placeholder="Who are you wishing?" required>
+    <label for="wish-message">Your Wish:</label>
+    <textarea id="wish-message" placeholder="Type your wish message here..." required></textarea>
+    <button type="button" class="send-button" onclick="sendWish()">Send</button>
+  </form>
+</div>
+
+<script>
+  // Show wish form after login
+  document.getElementById("login-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if (email && password) {
+      document.getElementById("login-section").style.display = "none";
+      document.getElementById("wish-form").style.display = "block";
+    } else {
+      alert("Please enter a valid email and password!");
+    }
+  });
+
+  // Function to send the wish
+  function sendWish() {
+    const recipient = document.getElementById("recipient-name").value;
+    const wish = document.getElementById("wish-message").value;
+
+    if (recipient && wish) {
+      alert(`Your message to ${recipient}: ${wish}`);
+      document.getElementById("recipient-name").value = '';
+      document.getElementById("wish-message").value = '';
+    } else {
+      alert("Please fill out all fields!");
+    }
+  }
+</script>
+
+</body>
+</html>
+
